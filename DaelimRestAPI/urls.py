@@ -1,6 +1,7 @@
 from django.urls import path, include
-from .views import TestAPI
+from .views import api_view
+from . import views
 
 urlpatterns = [
-    path("test/", TestAPI),
+    path("", views.IndexView.as_view(), name='index'),
 ]
