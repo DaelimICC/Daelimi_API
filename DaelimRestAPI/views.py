@@ -9,7 +9,6 @@ from .models import Answer, Question
 from .serializers import AnswerSerializer, QuestionSerializer
 from django.http import JsonResponse
 
-
 # Test API
 # @api_view(['GET'])
 # def TestAPI(request):
@@ -18,4 +17,20 @@ from django.http import JsonResponse
 # Post Implement
 class IndexView(View):
     def post(self, request):
-        return HttpResponse('Response Clear')
+        question_serializer = QuestionSerializer(data=request.POST)
+        # print(question_serializer.data['message'])
+        if question_serializer.is_valid():
+            question_serializer.save()
+
+            print(question_serializer.data['message'])
+
+
+            response_data = {
+                'answer': question_serializer.data['message']
+            }
+
+
+            # return HttpResponse(question_serializer.data, status=status.HTTP_201_CREATED)
+            return JsonResponse(response_data)
+        else:
+            return HttpResponse(question_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -5,7 +5,7 @@ from .models import Answer, Question
 # Test Serializer
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
+        model = Question
         fields = ('message', 'isFilter')
 
 
