@@ -8,6 +8,7 @@ from django.http.response import HttpResponse
 from .models import Answer, Question
 from .serializers import AnswerSerializer, QuestionSerializer
 from django.http import JsonResponse
+from Location_Filter import Location
 
 # Test API
 # @api_view(['GET'])
@@ -16,11 +17,17 @@ from django.http import JsonResponse
 
 # Post Implement
 class IndexView(View):
+
+    loc = Location()
+
     def post(self, request):
         question_serializer = QuestionSerializer(data=request.POST)
         # print(question_serializer.data['message'])
         if question_serializer.is_valid():
-            question_serializer.save()
+            requestData = question_serializer.data
+
+            if requestData['isFilter'] == 1:
+                pass
 
             print(question_serializer.data['message'])
 
