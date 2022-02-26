@@ -12,3 +12,14 @@ class Question(models.Model):
 
     class Meta:
         db_table = 'Question'
+
+
+class Issue(models.Model):
+    subject = models.CharField(max_length=300)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        db_table = 'Issue'
