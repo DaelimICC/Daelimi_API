@@ -8,16 +8,14 @@ from django.http.response import HttpResponse
 from .models import Answer, Question
 from .serializers import AnswerSerializer, QuestionSerializer
 from django.http import JsonResponse
-from Location_Filter import Location
 
-# Test API
-# @api_view(['GET'])
-# def TestAPI(request):
-#     return Response("Ready to Work!")
+
+from .Location_Filter import Location
 
 # Post Implement
 class IndexView(View):
 
+    global loc
     loc = Location()
 
     def post(self, request):
@@ -27,13 +25,16 @@ class IndexView(View):
             requestData = question_serializer.data
 
             if requestData['isFilter'] == 1:
-                pass
+                tempQuestion = requestData['message'].split()
 
-            print(question_serializer.data['message'])
+                print(tempQuestion)
+
+                locationWord = tempQuestion[0]
+                answerData = loc.classroomfinder(locationWord)
 
 
             response_data = {
-                'answer': question_serializer.data['message']
+                'answer': answerData
             }
 
 
