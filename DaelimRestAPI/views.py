@@ -9,12 +9,11 @@ from .models import Answer, Question
 from .serializers import AnswerSerializer, QuestionSerializer
 from django.http import JsonResponse
 
-
 from .Location_Filter import Location
+
 
 # Post Implement
 class IndexView(View):
-
     global loc
     loc = Location()
 
@@ -32,11 +31,9 @@ class IndexView(View):
                 locationWord = tempQuestion[0]
                 answerData = loc.classroomfinder(locationWord)
 
-
             response_data = {
                 'answer': answerData
             }
-
 
             # return HttpResponse(question_serializer.data, status=status.HTTP_201_CREATED)
             return JsonResponse(response_data)
