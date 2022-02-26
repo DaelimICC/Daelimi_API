@@ -19,23 +19,18 @@ class IndexView(View):
 
     def post(self, request):
         question_serializer = QuestionSerializer(data=request.POST)
-        # print(question_serializer.data['message'])
         if question_serializer.is_valid():
             requestData = question_serializer.data
 
             if requestData['isFilter'] == 1:
                 tempQuestion = requestData['message'].split()
-
-                print(tempQuestion)
-
-                locationWord = tempQuestion[0]
-                answerData = loc.classroomfinder(locationWord)
-
+                locationWord = tempQuestion[0][0:len(tempQuestion[0])-1]
+                answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
+            # Answer Json (Dictionary)
             response_data = {
                 'answer': answerData
             }
 
-            # return HttpResponse(question_serializer.data, status=status.HTTP_201_CREATED)
             return JsonResponse(response_data)
         else:
             return HttpResponse(question_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
