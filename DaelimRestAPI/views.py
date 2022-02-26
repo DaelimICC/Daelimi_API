@@ -29,6 +29,7 @@ class IndexView(View):
                 tempQuestion = requestData['message'].split()
                 locationWord = tempQuestion[0][0:len(tempQuestion[0]) - 1]
 
+                # True : 주요 시설물 답변, False : 강의실 코드 답변
                 if kor_reg.match(locationWord):
                     answerData = 'KOR Find!'
                 else:
