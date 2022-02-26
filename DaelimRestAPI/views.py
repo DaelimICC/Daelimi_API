@@ -8,6 +8,7 @@ from django.http.response import HttpResponse
 from .models import Question
 from .serializers import QuestionSerializer
 from django.http import JsonResponse
+import re
 
 from .Location_Filter import Location
 
@@ -23,14 +24,24 @@ class IndexView(View):
             requestData = question_serializer.data
 
             if requestData['isFilter'] == 1:
+                kor_reg = re.compile(r'[ㄱ-ㅣ가-힣]+')
+
                 tempQuestion = requestData['message'].split()
-                locationWord = tempQuestion[0][0:len(tempQuestion[0])-1]
-                answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
+                locationWord = tempQuestion[0][0:len(tempQuestion[0]) - 1]
+
+                if kor_reg.match(locationWord):
+                    answerData = 'KOR Find!'
+                else:
+                    answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
+            # isFilter == 0
+            else:
+                pass
             # Answer Json (Dictionary)
             response_data = {
                 'answer': answerData
             }
 
             return JsonResponse(response_data)
+
         else:
             return HttpResponse(question_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
