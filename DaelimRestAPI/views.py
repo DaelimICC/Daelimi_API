@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http.response import HttpResponse
-from .models import Answer, Question
-from .serializers import AnswerSerializer, QuestionSerializer
+from .models import Question
+from .serializers import QuestionSerializer
 from django.http import JsonResponse
 
 from .Location_Filter import Location

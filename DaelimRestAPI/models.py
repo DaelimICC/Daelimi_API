@@ -1,7 +1,8 @@
 from django.db import models
 
-
-# Test Class
+# Request Form
+# message : Question
+# isFilter : Location and FAQ
 class Question(models.Model):
     message = models.CharField(max_length=300)
     isFilter = models.IntegerField()
@@ -11,7 +12,3 @@ class Question(models.Model):
 
     class Meta:
         db_table = 'Question'
-
-
-class Answer(models.Model):
-    answer = models.CharField(max_length=300)
