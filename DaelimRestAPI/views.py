@@ -1,3 +1,5 @@
+import csv
+
 from django.shortcuts import render
 from django.views import View
 from rest_framework import status
@@ -8,7 +10,10 @@ from django.http.response import HttpResponse
 from .models import Question
 from .serializers import QuestionSerializer
 from django.http import JsonResponse
+
+
 import re
+import json
 
 from .Location_Filter import Location
 
@@ -31,6 +36,11 @@ class IndexView(View):
 
                 # True : 주요 시설물 답변, False : 강의실 코드 답변
                 if kor_reg.match(locationWord):
+                    with open('resource/faq_result.csv', 'r') as f:
+                        json_data = json.load(f)
+                    dataSet = json.load(json_data)
+                    print(dataSet)
+
                     answerData = 'KOR Find!'
                 else:
                     answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'

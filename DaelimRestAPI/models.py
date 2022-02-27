@@ -12,3 +12,15 @@ class Question(models.Model):
 
     class Meta:
         db_table = 'Question'
+
+
+class Facility(models.Model):
+    academicBuilding = models.CharField(max_length=50)
+    facilityName = models.CharField(max_length=50)
+    floor = models.IntegerField()
+
+    def __str__(self):
+        return self.facilityName
+
+    class Meta:
+        db_table = 'Facility'
