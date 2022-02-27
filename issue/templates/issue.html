@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-    <form>
+    <form method="post" action=".">
+    {% csrf_token %}
         <div>
             <h3 class="font-weight-bold mb-5">문의하기</h3>
         </div>
+        {{ error }}
         <!-- 제목 -->
         <div class="mb-3">
             <label class="form-label">제목</label>
@@ -28,9 +30,11 @@
             ></textarea>
         </div>
         <!-- 첨부파일 -->
+        <!--
         <div class="mb-3">
             <input class="form-control" type="file" id="issueFile" multiple/>
         </div>
+        -->
         <!-- submit -->
         <button type="submit" id="btnSubmit" class="btn btn-primary" name="btnSubmit">
             제출

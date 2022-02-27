@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-
 # Create your views here.
-from issue.models import Issue
+from .models import Issue
+
 
 def upload_Issue(request):
     """
@@ -12,15 +12,18 @@ def upload_Issue(request):
     if request.method == 'GET':
         return render(request, 'issue.html')
     elif request.method == 'POST':
-        subject = request.POST.get('issueTitle',None)
-        content = request.POST.get('issueContents',None)
+        subject = request.POST.get('issueTitle', None)
+        content = request.POST.get('issueContents', None)
+
+        res_data = {}
+
+        if not (subject and content):
+            res_data['error'] = '빠짐없이 입력해주세요!.'
+            return render(request, 'issue.html', res_data)
+
         issue = Issue(
-            subject = subject,
-            content = content
+            subject=subject,
+            content=content
         )
         issue.save()
-        return render(request,'issue.html')
-
-
-
-
+        return render(request, 'issue.html', res_data)
