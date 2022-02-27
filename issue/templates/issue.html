@@ -12,6 +12,7 @@
                     type="text"
                     class="form-control"
                     id="issueTitle"
+                    name="issueTitle"
                     placeholder="제목을 입력하세요."
             />
         </div>
@@ -21,6 +22,7 @@
             <textarea
                     class="form-control"
                     id="issueContents"
+                    name="issueContents"
                     placeholder="문의하실 내용을 입력하세요."
                     rows="23"
             ></textarea>
@@ -30,7 +32,7 @@
             <input class="form-control" type="file" id="issueFile" multiple/>
         </div>
         <!-- submit -->
-        <button type="submit" id="btnSubmit" class="btn btn-primary">
+        <button type="submit" id="btnSubmit" class="btn btn-primary" name="btnSubmit">
             제출
         </button>
     </form>
