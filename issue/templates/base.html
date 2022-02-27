@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>대림이문의</title>
+    <title>대림이 문의</title>
+    <!-- bootstrap -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
     <!-- Google Web Font -->
@@ -16,31 +18,21 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      .QuicksFont {
-        font-family: "Quicksand", sans-serif;
-      }
-      .background {
-        display: flex;
-        justify-content: center;
-        background-color: rgb(100, 100, 100);
-      }
-      .bg-white {
-        background: white;
-        width: 70%;
-        padding: 50px;
-        margin-top: 100px;
-        border-radius: 2px;
-      }
-      button {
-        width: 130px;
-        float: right;
-        margin-top: 30px;
-      }
-    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   </head>
-  <body class="background">
-    {% block contents %}
-    {% endblock %}
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="container-fluid">Daelimi FAQ Contact Us</div>
+    </nav>
+
+    <div class="background">
+      <div class="bg-white">
+        {% block contents %}
+          {% endblock %}
+      </div>
+    </div>
   </body>
 </html>
