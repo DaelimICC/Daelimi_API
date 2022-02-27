@@ -1,41 +1,37 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-<div class="bg-white">
     <form>
         <div>
-            <h4 class="font-weight-bold mb-5">문의하기</h4>
+            <h3 class="font-weight-bold mb-5">문의하기</h3>
         </div>
-        <div>
-            <h5>제목</h5>
+        <!-- 제목 -->
+        <div class="mb-3">
+            <label class="form-label">제목</label>
             <input
-                    class="form-control form-control mb-3"
                     type="text"
+                    class="form-control"
                     id="issueTitle"
                     placeholder="제목을 입력하세요."
             />
         </div>
-        <div>
-            <h5>내용</h5>
+        <!-- 내용 -->
+        <div class="mb-3">
+            <label class="form-label">내용</label>
             <textarea
-                    class="form-control form-control"
-                    style="padding-bottom: 300px"
+                    class="form-control"
                     id="issueContents"
-                    placeholder="내용을 입력 하세요."
+                    placeholder="문의하실 내용을 입력하세요."
+                    rows="23"
             ></textarea>
         </div>
-        <div class="custom-file mt-2">
-            <input
-                    type="file"
-                    class="custom-file-input"
-                    id="issueFile"
-                    lang="ko"
-            />
-            <label class="custom-file-label" for="customFileLang">첨부 파일</label>
+        <!-- 첨부파일 -->
+        <div class="mb-3">
+            <input class="form-control" type="file" id="issueFile" multiple/>
         </div>
-        <button type="button" class="btn btn-primary" id="btnSubmit">
+        <!-- submit -->
+        <button type="submit" id="btnSubmit" class="btn btn-primary">
             제출
         </button>
     </form>
-</div>
 {% endblock %}
