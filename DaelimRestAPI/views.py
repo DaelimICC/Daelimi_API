@@ -11,12 +11,14 @@ from django.http import JsonResponse
 import re
 
 from .Location_Filter import Location
+from .Facility import Facility
 
 
 # Post Implement
 class IndexView(View):
-    global loc
+    global loc, fac
     loc = Location()
+    fac = Facility()
 
     def post(self, request):
         question_serializer = QuestionSerializer(data=request.POST)
@@ -31,7 +33,10 @@ class IndexView(View):
 
                 # True : 주요 시설물 답변, False : 강의실 코드 답변
                 if kor_reg.match(locationWord):
-                    answerData = 'KOR Find!'
+                    if fac.checkVailed(locationWord):
+                        answerData = locationWord
+                    else:
+                        answerData = 'error'
                 else:
                     if loc.classroomfinder(locationWord) != "찾을 수 없는 강의실 코드":
                         answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
