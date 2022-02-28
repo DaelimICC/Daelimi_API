@@ -33,7 +33,10 @@ class IndexView(View):
                 if kor_reg.match(locationWord):
                     answerData = 'KOR Find!'
                 else:
-                    answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
+                    if loc.classroomfinder(locationWord) != "찾을 수 없는 강의실 코드":
+                        answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
+                    else:
+                        answerData = str(tempQuestion[0]) + ' 어디에 있는지 저도 모르겠네요... 올바른 강의실 코드인가요?'
             # isFilter == 0
             else:
                 pass
