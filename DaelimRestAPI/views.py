@@ -42,7 +42,7 @@ class IndexView(APIView):
                     if fac.checkVailed(locationWord):
                         answerData = locationWord
                     else:
-                        answerData = 'error'
+                        answerData = '거기는 어디인가요...? 잘 모르겠어요ㅠㅠ'
                 else:
                     if loc.classroomfinder(locationWord) != "찾을 수 없는 강의실 코드":
                         answerData = str(tempQuestion[0]) + ' ' + loc.classroomfinder(locationWord) + '에 있습니다!'
@@ -50,7 +50,7 @@ class IndexView(APIView):
                         answerData = str(tempQuestion[0]) + ' 어디에 있는지 저도 모르겠네요... 올바른 강의실 코드인가요?'
             # isFilter == 0
             else:
-                pass
+                answerData = '아직 구현이 되지 않았습니다! 조금만 더 기다려주세요 :D'
             # Answer Json (Dictionary)
             response_data = {
                 'answer': answerData
