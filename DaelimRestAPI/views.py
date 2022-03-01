@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from rest_framework import status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -8,6 +9,9 @@ from django.http.response import HttpResponse
 from .models import Question
 from .serializers import QuestionSerializer
 from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 import re
 
 from .Location_Filter import Location
@@ -15,13 +19,15 @@ from .Facility import Facility
 
 
 # Post Implement
-class IndexView(View):
+class IndexView(APIView):
     global loc, fac
     loc = Location()
     fac = Facility()
 
+    @method_decorator(csrf_exempt)
     def post(self, request):
-        question_serializer = QuestionSerializer(data=request.POST)
+        tempdata = JSONParser().parse(request)
+        question_serializer = QuestionSerializer(data=tempdata)
         if question_serializer.is_valid():
             requestData = question_serializer.data
 
