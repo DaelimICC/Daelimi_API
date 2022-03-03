@@ -40,7 +40,7 @@ class IndexView(APIView):
                 # True : 주요 시설물 답변, False : 강의실 코드 답변
                 if kor_reg.match(locationWord):
                     if fac.checkVailed(locationWord):
-                        answerData = locationWord
+                        answerData = locationWord + '는 ' + fac.FindLocation(locationWord) + '에 있습니다!'
                     else:
                         answerData = '거기는 어디인가요...? 잘 모르겠어요ㅠㅠ'
                 else:
