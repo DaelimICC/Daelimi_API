@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'DaelimRestAPI',
     'corsheaders',
-    'issue'
 ]
 
 MIDDLEWARE = [
