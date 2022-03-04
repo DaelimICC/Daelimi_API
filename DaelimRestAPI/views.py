@@ -49,8 +49,12 @@ class IndexView(APIView):
                     else:
                         answerData = str(tempQuestion[0]) + ' 어디에 있는지 저도 모르겠네요... 올바른 강의실 코드인가요?'
             # isFilter == 0
-            else:
+            elif requestData['isFilter'] == 0:
                 answerData = '아직 구현이 되지 않았습니다! 조금만 더 기다려주세요 :D'
+            elif requestData['isFilter'] == 404:
+                answerData = 'isOK'
+            else:
+                answerData = 'Exception'
             # Answer Json (Dictionary)
             response_data = {
                 'answer': answerData
