@@ -28,10 +28,14 @@ class IndexView(APIView):
     def post(self, request):
         tempdata = JSONParser().parse(request)
         question_serializer = QuestionSerializer(data=tempdata)
+        save_serializer = QuestionSerializer(data=request.data)
+
         if question_serializer.is_valid():
             requestData = question_serializer.data
 
-            if requestData['isFilter'] == 1:
+            Filter = question_serializer.validated_data.get('isFilter')
+
+            if Filter == 1:
                 kor_reg = re.compile(r'[ㄱ-ㅣ가-힣]+')
 
                 tempQuestion = requestData['message'].split()
@@ -49,9 +53,11 @@ class IndexView(APIView):
                     else:
                         answerData = str(tempQuestion[0]) + ' 어디에 있는지 저도 모르겠네요... 올바른 강의실 코드인가요?'
             # isFilter == 0
-            elif requestData['isFilter'] == 0:
+            elif Filter == 0:
                 answerData = '아직 구현이 되지 않았습니다! 조금만 더 기다려주세요 :D'
-            elif requestData['isFilter'] == 404:
+
+            elif Filter == 404:
+                save_serializer.save()
                 answerData = 'isOK'
             else:
                 answerData = 'Exception'
