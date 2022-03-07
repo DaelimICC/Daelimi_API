@@ -95,13 +95,13 @@ def convert_index_to_text(indexs, vocabulary):
 
 
 # 모델 파일 로드
-encoder_model = models.load_model('/static/model/seq2seq_chatbot_encoder_model.h5')
-decoder_model = models.load_model('/static/model/seq2seq_chatbot_decoder_model.h5')
+encoder_model = models.load_model('./model/seq2seq_chatbot_encoder_model.h5')
+decoder_model = models.load_model('./model/seq2seq_chatbot_decoder_model.h5')
 
 # 인덱스 파일 로드
-with open('../static/model/word_to_index.pkl', 'rb') as f:
+with open('./model/word_to_index.pkl', 'rb') as f:
     word_to_index = pickle.load(f)
-with open('../static/model/index_to_word.pkl', 'rb') as f:
+with open('./model/index_to_word.pkl', 'rb') as f:
     index_to_word = pickle.load(f)
 
 
@@ -162,4 +162,5 @@ def PredicAnswer(question):
     sentence = generate_text(input_seq)
     stemp = spell_checker.check(sentence)
     chk_sentence = stemp.checked
-    print(chk_sentence)
+    return chk_sentence
+

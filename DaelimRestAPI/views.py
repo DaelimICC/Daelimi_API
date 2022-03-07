@@ -29,7 +29,6 @@ class IndexView(APIView):
     def post(self, request):
         tempdata = JSONParser().parse(request)
         question_serializer = QuestionSerializer(data=tempdata)
-        save_serializer = QuestionSerializer(data=request.data)
 
         if question_serializer.is_valid():
             requestData = question_serializer.data
@@ -56,6 +55,12 @@ class IndexView(APIView):
             # isFilter == 0
             elif Filter == 0:
                 answerData = PredicAnswer(requestData['message'])
+            elif Filter == 404:
+                response_data = {
+                    'isFilter' : 404,
+                    'message' : requestData['message']
+                }
+                return JsonResponse(response_data)
             else:
                 answerData = 'Exception'
             # Answer Json (Dictionary)
