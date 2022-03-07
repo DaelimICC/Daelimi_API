@@ -16,6 +16,7 @@ import re
 
 from .Location_Filter import Location
 from .Facility import Facility
+from .ChatBot import PredicAnswer
 
 
 # Post Implement
@@ -54,11 +55,7 @@ class IndexView(APIView):
                         answerData = str(tempQuestion[0]) + ' 어디에 있는지 저도 모르겠네요... 올바른 강의실 코드인가요?'
             # isFilter == 0
             elif Filter == 0:
-                answerData = '아직 구현이 되지 않았습니다! 조금만 더 기다려주세요 :D'
-
-            elif Filter == 404:
-                save_serializer.save()
-                answerData = 'isOK'
+                answerData = PredicAnswer(requestData['message'])
             else:
                 answerData = 'Exception'
             # Answer Json (Dictionary)
