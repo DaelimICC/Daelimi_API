@@ -4,7 +4,7 @@ from django.db import models
 # message : Question
 # isFilter : Location and FAQ
 class Question(models.Model):
-    message = models.CharField(max_length=300)
+    message = models.CharField(max_length=3000)
     isFilter = models.IntegerField()
 
     def __str__(self):

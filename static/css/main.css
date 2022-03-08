@@ -12,10 +12,10 @@ body {
 .bg-white {
   background: white;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 30px;
   margin-bottom: 100px;
   width: 90%;
-  height: 1000px;
+  height: 700px;
   padding: 50px;
   border-radius: 2px;
 }
@@ -29,6 +29,6 @@ nav {
 }
 nav div {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
   color: white;
 }
