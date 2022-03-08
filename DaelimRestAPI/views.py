@@ -17,6 +17,7 @@ import re
 from .Location_Filter import Location
 from .Facility import Facility
 from .ChatBot import PredicAnswer
+from .LogGenerater import printLog, writeLog
 
 
 # Post Implement
@@ -67,10 +68,8 @@ class IndexView(APIView):
             # Answer Json (Dictionary)
 
             # Django Log
-            print('[ Filter Code ]', requestData['isFilter'])
-            print('[ Request ]', requestData['message'])
-            print('[ Response ]', answerData)
-            print()
+            printLog(requestData)
+            writeLog(requestData, answerData)
 
             response_data = {
                 'answer': answerData
