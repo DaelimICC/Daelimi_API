@@ -60,10 +60,18 @@ class IndexView(APIView):
                     'isFilter' : 404,
                     'message' : requestData['message']
                 }
+                print('Issue Response!')
                 return JsonResponse(response_data)
             else:
                 answerData = 'Exception'
             # Answer Json (Dictionary)
+
+            # Django Log
+            print('[ Filter Code ]', requestData['isFilter'])
+            print('[ Request ]', requestData['message'])
+            print('[ Response ]', answerData)
+            print()
+
             response_data = {
                 'answer': answerData
             }
