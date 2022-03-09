@@ -68,7 +68,7 @@ class IndexView(APIView):
             # Answer Json (Dictionary)
 
             # Django Log
-            printLog(requestData)
+            printLog(requestData, answerData)
             writeLog(requestData, answerData)
 
             response_data = {
